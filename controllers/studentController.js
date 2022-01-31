@@ -12,8 +12,25 @@ module.exports.viewProfile = async function(req, res){
     res.render('student/profile', {student})
 }
 //render add
+module.exports.renderAddForm = function(req, res){
+    const student = {
+        first_name: '',
+        last_name: '',
+        grade_level: 9
+    }
+    res.render('student/add', {student});
+}
 
 //add
+module.exports.addStudent = async function(req, res){
+    const student = await Student.create({
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        grade_level: req.body.grade_level
+    });
+    res.redirect(`/students/profile/${student.id}`);
+}
+
 
 //render edit
 module.exports.renderEditForm = async function(req, res){
@@ -24,19 +41,25 @@ module.exports.renderEditForm = async function(req, res){
 //update
 module.exports.updateStudent = async function(req, res){
     const student = await Student.update({
-        first_name: req.body.,
-        department: req.body.department,
-        instructor_name: req.body.instructor_name,
-        description: req.body.description
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        grade_level: req.body.grade_level
     }, {
         where: {
             id: req.params.id
         }
     });
-    res.redirect(`/courses/profile/${req.params.id}`);
+    res.redirect(`/students/profile/${req.params.id}`);
 }
-
 
 //edit
 
 //delete
+module.exports.deleteStudent = async function(req, res){
+    await Student.destroy({
+        where: {
+            id: req.params.id
+        }
+    });
+    res.redirect('/students')
+}
