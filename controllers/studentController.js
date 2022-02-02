@@ -1,4 +1,4 @@
-const {Student, Course, StudentCourses} = require('../models')
+const {Student, Course, StudentCourse} = require('../models')
 
 //view all
 module.exports.viewAll = async function(req, res){
@@ -75,7 +75,7 @@ module.exports.deleteStudent = async function(req, res){
 
 module.exports.enrollStudent = async function(req, res){
 
-        await StudentCourses.create({
+        await StudentCourse.create({
             student_id: req.params.studentId,
             course_id: req.body.course
         })
