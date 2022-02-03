@@ -21,6 +21,6 @@ mixin courseForm(course, departments, saveURL, cancelURL)
                 textarea(id='description' name='description' rows=10 cols=80) #{course.description}
 
             div.form-buttons
-                a.buttom(href=cancelURL) Cancel
-                button.buttom(type='submit') Save
+                a.button(href=cancelURL) Cancel
+                button.button.primary(type='submit') Save
 

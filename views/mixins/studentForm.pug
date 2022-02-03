@@ -17,6 +17,6 @@ mixin studentForm(student, saveURL, cancelURL)
                         option(value=grade selected = (grade === student.grade_level)) #{grade}
 
             div.form-buttons
-                a.buttom(href=cancelURL) Cancel
-                button.buttom(type='submit') Save
+                a.button(href=cancelURL) Cancel
+                button.button.primary(type='submit') Save
 
